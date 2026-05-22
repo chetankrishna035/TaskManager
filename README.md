@@ -2,8 +2,8 @@
 
 A full-stack web application for collaborative team task management with role-based access control.
 
-**Live Demo:** [your-railway-url-here]  
-**GitHub:** [your-repo-url-here]
+**Live Demo: https://taskmanager-production-0181.up.railway.app/  
+**GitHub: https://github.com/chetankrishna035/TaskManager
 
 ---
 
@@ -38,7 +38,7 @@ A full-stack web application for collaborative team task management with role-ba
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/taskmanager.git
+git clone https://github.com/chetankrishna035/taskmanager.git
 cd taskmanager
 ```
 
@@ -52,7 +52,7 @@ cp .env.example .env
 Edit `.env`:
 ```env
 PORT=5000
-MONGODB_URI=mongodb+srv://<user>:<pass>@cluster.mongodb.net/taskmanager
+MONGODB_URI=Your MongoDB Atlas String
 JWT_SECRET=your_long_random_secret_here
 FRONTEND_URL=http://localhost:5173
 ```
