@@ -24,9 +24,9 @@ export default function TaskModal({ projectId, members, task, isAdmin, onClose, 
         const payload = isAdmin
           ? { ...form, assignedTo: form.assignedTo || null }
           : { status: form.status };
-        res = await api.put(`/tasks/${task._id}`, payload);
+        res = await api.put(`/api/tasks/${task._id}`, payload);
       } else {
-        res = await api.post('/tasks', {
+        res = await api.post('/api/tasks', {
           ...form,
           projectId,
           assignedTo: form.assignedTo || undefined,
