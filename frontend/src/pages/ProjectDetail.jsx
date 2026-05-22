@@ -15,7 +15,7 @@ function AddMemberModal({ projectId, onClose, onAdded }) {
     setError('');
     setLoading(true);
     try {
-      const res = await api.post(`/projects/${projectId}/members`, form);
+      const res = await api.post(`/api/projects/${projectId}/members`, form);
       onAdded(res.data.project);
       onClose();
     } catch (err) {
@@ -84,8 +84,8 @@ export default function ProjectDetail() {
 
   useEffect(() => {
     Promise.all([
-      api.get(`/projects/${id}`),
-      api.get(`/tasks?projectId=${id}`)
+      api.get(`/api/projects/${id}`),
+      api.get(`/api/tasks?projectId=${id}`)
     ]).then(([pRes, tRes]) => {
       setProject(pRes.data.project);
       setTasks(tRes.data.tasks);
@@ -97,7 +97,7 @@ export default function ProjectDetail() {
   const handleRemoveMember = async (userId) => {
     if (!confirm('Remove this member from the project?')) return;
     try {
-      const res = await api.delete(`/projects/${id}/members/${userId}`);
+      const res = await api.delete(`/api/projects/${id}/members/${userId}`);
       setProject(res.data.project);
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to remove member.');
@@ -107,7 +107,7 @@ export default function ProjectDetail() {
   const handleDeleteTask = async (taskId) => {
     if (!confirm('Delete this task?')) return;
     try {
-      await api.delete(`/tasks/${taskId}`);
+      await api.delete(`/api/tasks/${taskId}`);
       setTasks(prev => prev.filter(t => t._id !== taskId));
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to delete task.');
@@ -117,7 +117,7 @@ export default function ProjectDetail() {
   const handleDeleteProject = async () => {
     if (!confirm(`Delete project "${project.name}" and all its tasks?`)) return;
     try {
-      await api.delete(`/projects/${id}`);
+      await api.delete(`/api/projects/${id}`);
       navigate('/projects');
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to delete project.');

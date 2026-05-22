@@ -14,7 +14,7 @@ function CreateProjectModal({ onClose, onCreated }) {
     setError('');
     setLoading(true);
     try {
-      const res = await api.post('/projects', form);
+      const res = await api.post('/api/projects', form);
       onCreated(res.data.project);
       onClose();
     } catch (err) {
@@ -68,7 +68,7 @@ export default function Projects() {
   const { user } = useAuth();
 
   useEffect(() => {
-    api.get('/projects')
+    api.get('/api/projects')
       .then(res => setProjects(res.data.projects))
       .finally(() => setLoading(false));
   }, []);
